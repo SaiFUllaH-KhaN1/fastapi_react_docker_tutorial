@@ -3,18 +3,18 @@ name: docker_build_push
 on: push
 
 jobs:
-  docker_build_push_job
-  runs-on: ubuntu-latest
-  steps:
-    - name: check the code
-      uses: actions/checkout@v2
-    - name: login to docker
-      uses: docker/login-action@v1
-      with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-    - name: build und push
-      uses: docker/build-push-action@v2
-      with:
-        push: true
-        tags: saifullahedu0/fastapi_react_docker:latest
+  docker_build_push_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: check the code
+        uses: actions/checkout@v2
+      - name: login to docker
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: build und push
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: saifullahedu0/fastapi_react_docker:latest
