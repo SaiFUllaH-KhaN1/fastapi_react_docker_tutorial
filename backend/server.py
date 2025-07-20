@@ -2,6 +2,12 @@ from typing import Annotated
 from fastapi import FastAPI, Form
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+my_api = os.getenv("MY_API")
 
 app = FastAPI()
 
@@ -18,6 +24,7 @@ app.add_middleware(
 @app.post("/form_display")
 def form_display(first_name: Annotated[str, Form()], last_name: Annotated[str, Form()]):
     print("recieved we have: ", first_name, last_name)
+    print("api key is:",my_api)
     if first_name == "scott":
         print(f"correct input as {input} detected")
         return {"message": f"Hello pathfinder {first_name} {last_name}"}
